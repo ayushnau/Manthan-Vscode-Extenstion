@@ -1,34 +1,29 @@
 import * as vscode from "vscode";
 import axios from "axios";
-import { XMLParser } from "fast-xml-parser";
+import {TodoPanel} from "./TodoPanel"
+
 export async function activate(context: vscode.ExtensionContext) {
-  const response = await axios.get("https://blog.webdevsimplified.com/rss.xml");
-  //   console.log(response);
-  const articles = new XMLParser()
-    .parse(response.data)
-    .rss.channel.item.map((article: any) => {
-      return {
-        label: article.title,
-        description: article.description,
-        link: article.link,
-      };
-    });
-
-  let disposable = vscode.commands.registerCommand(
-    "saveNotes-command",
-    async () => {
-      const article: any = await vscode.window.showQuickPick(articles, {
-        matchOnDetail: true,
-      });
-
-      if (!article) return;
-      vscode.env.openExternal(article.link);
-      console.log(article);
-      //   vscode.window.showInformationMessage("saving the notes");
-    }
+  // register a command that opens a cowsay-document
+  context.subscriptions.push(
+    vscode.commands.registerCommand("getUserView", async () => {
+      TodoPanel.createOrShow(context.extensionUri)
+    })
   );
+  context.subscriptions.push(
+    vscode.commands.registerCommand("saveNotes-command", async () => {
+     
+      
+    })
+  );
+ 
 
-  context.subscriptions.push(disposable);
+  // register a command that updates the current cowsay
+  context.subscriptions.push(
+    vscode.commands.registerCommand("updateNotes-command", async () => {
+      console.log("update running>>>");
+      
+    })
+  );
 }
 
 export function deactivate() {}

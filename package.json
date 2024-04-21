@@ -18,13 +18,18 @@
       {
         "command": "saveNotes-command",
         "title": "Save Notes title"
+      },
+      {
+        "command": "getUserView",
+        "category": "Manthan",
+        "title": "getUserView"
       }
     ]
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "webpack",
-    "watch": "webpack --watch",
+    "watch": "concurrently \"webpack --watch\" \"cd ./Webviews && npm run dev\"",
     "package": "webpack --mode production --devtool hidden-source-map",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
@@ -40,6 +45,7 @@
     "@typescript-eslint/parser": "^7.4.0",
     "@vscode/test-cli": "^0.0.8",
     "@vscode/test-electron": "^2.3.9",
+    "concurrently": "^8.2.2",
     "eslint": "^8.57.0",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.3",
