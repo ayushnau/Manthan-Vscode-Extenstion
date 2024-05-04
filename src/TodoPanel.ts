@@ -118,7 +118,7 @@ export class TodoPanel {
     );
     const styleResetPath = vscode.Uri.joinPath(
       this._extensionUri,
-      "output",
+      "media",
       "media.css"
     );
     const stylesResetUri = webview.asWebviewUri(styleResetPath);

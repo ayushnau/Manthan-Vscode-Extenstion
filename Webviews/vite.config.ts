@@ -9,6 +9,8 @@ export default defineConfig({
       output: {
         dir: "../output",
         entryFileNames: "media.js",
+        assetFileNames: "media.css",
+        chunkFileNames: "chunk.js",
         manualChunks: undefined,
       },
     },

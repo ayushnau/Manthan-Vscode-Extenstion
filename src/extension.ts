@@ -6,10 +6,10 @@ import { SidebarProvider } from "./SidebarProvider";
 export async function activate(context: vscode.ExtensionContext) {
   const sidebarProvider = new SidebarProvider(context.extensionUri);
   const item = vscode.window.createStatusBarItem(
-    vscode.StatusBarAlignment.Right
+    vscode.StatusBarAlignment.Left
   );
   item.text = "$(beaker) Add Todo";
-  item.command = "vstodo.addTodo";
+  item.command = "addtodos";
   item.show();
 
   context.subscriptions.push(
@@ -21,22 +21,25 @@ export async function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand("addtodos", async () => {
-      TodoPanel.createOrShow(context.extensionUri);
+      // TodoPanel.createOrShow(context.extensionUri);
+      await vscode.commands.executeCommand(
+        "workbench.view.extension.manthan-sidebar-view"
+      );
     }),
 
     vscode.commands.registerCommand("Manthan.refresh", async () => {
       TodoPanel.kill();
-      TodoPanel.createOrShow(context.extensionUri);
-      await vscode.commands.executeCommand("workbench.action.closeSidebar");
-      await vscode.commands.executeCommand(
-        "workbench.view.extension.manthan-sidebar-view"
-      );
 
       setTimeout(() => {
         vscode.commands.executeCommand(
           "workbench.action.webview.openDeveloperTools"
         );
       }, 500);
+      // TodoPanel.createOrShow(context.extensionUri);
+      await vscode.commands.executeCommand("workbench.action.closeSidebar");
+      await vscode.commands.executeCommand(
+        "workbench.view.extension.manthan-sidebar-view"
+      );
     })
   );
 
@@ -44,11 +47,8 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand("saveNotes-command", async () => {})
   );
 
-  // register a command that updates the current cowsay
   context.subscriptions.push(
-    vscode.commands.registerCommand("updateNotes-command", async () => {
-      console.log("update running>>>");
-    })
+    vscode.commands.registerCommand("updateNotes-command", async () => {})
   );
 }
 
