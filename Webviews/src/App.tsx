@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
 
 const App = () => {
   return (
-    <div>App hi thereasdf hi tsadfasdfhere amazing experiesnce</div>
-  )
-}
+    <div>
+      <input type="text" />
+      <div>ayush asdfasdf asdf</div>
+    </div>
+  );
+};
 
-export default App
+export default App;

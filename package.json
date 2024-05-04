@@ -11,18 +11,46 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:Manthan.refresh",
+    "onView:Manthan-sidebar"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "manthan-sidebar-view",
+          "title": "Manthan",
+          "icon": "media/Discussion.svg"
+        }
+      ]
+    },
+    "views": {
+      "manthan-sidebar-view": [
+        {
+          "type": "webview",
+          "id": "Manthan-sidebar",
+          "name": "Manthan",
+          "icon": "media/discussion.svg",
+          "contextualTitle": "Manthan"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "saveNotes-command",
         "title": "Save Notes title"
       },
       {
-        "command": "getUserView",
+        "command": "addtodos",
         "category": "Manthan",
-        "title": "getUserView"
+        "title": "addtodos"
+      },
+      {
+        "command": "Manthan.refresh",
+        "title": "Refresh",
+        "category": "Manthan"
       }
     ]
   },
